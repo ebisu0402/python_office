@@ -3,6 +3,13 @@ from docx.shared import Inches
 import requests
 from io import BytesIO
 
+document = Document()
+
+document.add_heading("簡単なWordドキュメントのタイトル", 0)
+document.add_paragraph("簡単なWordドキュメントのテキスト")
+
+document.save("sample.docx")
+
 
 # 1. 「sample.docx」を読み込んで画像を貼り付ける
 def insert_image_from_url(docx_file, image_url):
@@ -12,7 +19,7 @@ def insert_image_from_url(docx_file, image_url):
     doc.add_picture(
         image_stream, width=Inches(3)
     )  # 画像を挿入する。適切なサイズを調整してください。
-    doc.save("sample_with_image.docx")  # 変更を保存する
+    doc.save("sample_answer.docx")  # 変更を保存する
 
 
 # 2. 「sample.docx」内の文字数をカウントして出力する
@@ -37,6 +44,3 @@ if __name__ == "__main__":
 
     # 2. 文字数をカウントして出力する
     count_characters("sample.docx")
-
-    # 3. ドキュメントを保存する
-    save_document_as_new("sample.docx", "sample_answer.docx")
